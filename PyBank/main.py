@@ -44,6 +44,7 @@ with open(csv_filepath, 'r') as csvfile:
     for row in csv_reader: 
         # Add keys and values to the profit_n_losses dictionary
         profits_n_losses[row[0]] = int(row[1])
+        # append list_of_profit to use for comparison
         list_profits.append(int(row[1]))
         month_count += 1 
         total += int(row[1])
@@ -73,7 +74,7 @@ for key, value in profits_n_losses.items():
             greatest_decrease_key = key
     index += 1
 
-# In order to do this, I had to import the "statistics" librart 
+# In order to calculate average change , I had to import the "statistics" library
 # https://appdividend.com/2019/01/28/python-statistics-tutorial-mean-function-example/
 average_change = round(statistics.mean(list_of_differences), 2)
 
