@@ -40,23 +40,23 @@ report = {
     
 }
 
-for row in sales: 
-    quantity = int(row[3])
-    sales_item = row[4]
+for sales_row in sales: 
+    quantity = int(sales_row[3])
+    sales_item = sales_row[4]
 
-    if row[4] in report: 
+    if sales_row[4] in report: 
         pass
     else: 
-        report[row[4]] = {
+        report[sales_row[4]] = {
         "01-count": 0.0,
         "02-revenue": 0.0,
         "03-cogs": 0.0,
         "04-profit": 0.0,
          }
-    for row in menu:
-        menu_item = row[0]
-        price = float(row[3])
-        cost = int(row[4]) 
+    for menu_row in menu:
+        menu_item = menu_row[0]
+        price = float(menu_row[3])
+        cost = int(menu_row[4]) 
         profit = price - cost
         if sales_item == menu_item: 
         
@@ -66,7 +66,9 @@ for row in sales:
             report[sales_item]['03-cogs'] += cost * quantity
             report[sales_item]['04-profit'] += profit * quantity
     
-    
+       # else: 
+            #print(f"Row: {sales_row}:  {sales_item} is not equals to {menu_item}")
+
 
 
 print(report)
@@ -77,5 +79,5 @@ output = Path("PyRamen_output.txt")
 
 with open(output, 'w') as file: 
     for keys, value in report.items(): 
-        file.write(f"Keys {keys} Values {str(value)}\n")
+        file.write(f" {keys} Values {str(value)}\n")
         
